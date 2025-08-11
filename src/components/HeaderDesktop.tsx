@@ -83,9 +83,7 @@ export function HeaderDesktop() {
       <div className="container mx-auto flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
           <div className="h-10 w-10 bg-lime-400 rounded-full flex items-center justify-center">
-            <span className="text-black font-bold text-sm italic -rotate-12 select-none">
-              di
-            </span>
+            <span className="text-black font-bold text-sm italic -rotate-12 select-none"></span>
           </div>
           <span className="text-4xl font-bold font-serif text-gray-800">
             NEX
@@ -98,8 +96,8 @@ export function HeaderDesktop() {
           <div className="p-2 border border-gray-200 rounded-md">
             <Search className="h-6 w-6 text-gray-700 cursor-pointer" />
           </div>
-          <Button className="bg-black text-white hover:bg-gray-800 rounded-lg px-6 py-3 font-semibold">
-            Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-lime-400" />
+          <Button className="bg-lime-400 text-black hover:bg-gray-800 rounded-lg px-6 py-3 font-semibold">
+            Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-black" />
           </Button>
         </div>
       </div>

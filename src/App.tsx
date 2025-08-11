@@ -1,6 +1,9 @@
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { CollaborationSection } from "./components/ColaborationSection";
+import { EmpoweringBrands } from "./components/EmpoweringBrands";
+import { StatsAndVideo } from "./components/StatsAndVideo";
+import { WorkflowSection } from "./components/WorkFlowSection";
 
 function App() {
   return (
@@ -8,6 +11,9 @@ function App() {
       <Header />
       <Hero />
       <CollaborationSection />
+      <EmpoweringBrands />
+      <StatsAndVideo />
+      <WorkflowSection />
     </div>
   );
 }

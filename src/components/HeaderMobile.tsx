@@ -21,9 +21,7 @@ export function HeaderMobile() {
       <div className="container mx-auto flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
           <div className="h-10 w-10 bg-lime-400 rounded-full flex items-center justify-center">
-            <span className="text-black font-bold text-sm italic -rotate-12 select-none">
-              di
-            </span>
+            <span className="text-black font-bold text-sm italic -rotate-12 select-none"></span>
           </div>
           <span className="text-4xl font-bold font-serif text-gray-800">
             NEX
@@ -53,8 +51,8 @@ export function HeaderMobile() {
                 {link.name}
               </a>
             ))}
-            <Button className="w-full mt-4 bg-black text-white hover:bg-gray-800 rounded-lg py-3 font-semibold">
-              Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-lime-400" />
+            <Button className="bg-lime-400 w-full mt-4 text-white hover:bg-gray-800 rounded-lg py-3 font-semibold">
+              Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-black" />
             </Button>
           </nav>
         </div>

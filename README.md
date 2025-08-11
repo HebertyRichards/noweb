@@ -1,69 +1,72 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Noweb Front-End + API Challenge
 
-Currently, two official plugins are available:
+## Descrição
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+É uma página única criada em **React**, utilizando **TypeScript** e **Tailwind CSS**, que reproduz fielmente o layout fornecido no Figma.
 
-## Expanding the ESLint configuration
+Inclui uma funcionalidade de busca de CEP, que abre uma modal para digitar o CEP e retorna os dados de endereço pela API pública do [ViaCEP](https://viacep.com.br), preenchendo automaticamente os campos e bloqueando a edição.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Link da Demo
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+[https://your-deployment-url.vercel.app](https://your-deployment-url.vercel.app)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Tecnologias usadas
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- React
+- TypeScript
+- Tailwind CSS
+- Componentes da biblioteca shadcn/ui
+- API ViaCEP para consulta de CEP
+- Vercel para deploy
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## Funcionalidades
+
+- Layout responsivo baseado no design desktop do Figma.
+- Modal de busca de CEP ativada ao clicar no botão de busca no cabeçalho.
+- Validação do CEP.
+- Consulta à API ViaCEP para preenchimento automático dos campos: Logradouro, Complemento, Bairro, Cidade, Estado e CEP.
+- Campos preenchidos automaticamente ficam bloqueados para edição.
+- Permite múltiplas pesquisas dentro da mesma modal sem fechá-la.
+- Tratamento de erros e feedback para CEP inválido ou não encontrado.
+
+---
+
+## Como rodar localmente
+
+### Pré-requisitos
+
+- Node.js (versão 16+ recomendada)
+- npm ou pnpm
+
+### Passos
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/HebertyRichards/noweb.git
+   cd noweb-front-api-challenge
+   ```
+
+2. Instale as dependências:
+   ```bash
+   caso for pnpm -> npm install -g pnpm
+   pnpm i 
+   npm install
+   ```
+
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   pnpm dev
+   npm run dev
+   ```
+
+4. Abra [http://localhost:3000](http://localhost:3000) no navegador para visualizar o projeto.
+
+---
+

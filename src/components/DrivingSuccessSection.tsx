@@ -1,13 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import React from "react";
 
-type StrategyPillProps = {
-  imgSrc: string;
-  label: string;
-  circleSize?: number;
-  pillWidth?: number;
-};
-
 const StrategyPill: React.FC<StrategyPillProps> = ({
   imgSrc,
   label,
@@ -32,7 +25,6 @@ const StrategyPill: React.FC<StrategyPillProps> = ({
         >
           <h3 className="font-semibold text-base text-gray-800 leading-tight">
             {" "}
-            {/* Fonte diminuída */}
             <span className="block">{line1}</span>
             {line2 && <span className="block mt-1">{line2}</span>}
           </h3>
@@ -63,13 +55,13 @@ export function DrivingSuccessSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-10">
           <div className="flex flex-col gap-10">
             <div>
-              <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-1">
+              <div className="inline-flex items-center gap-2 rounded-full px-4 py-1">
                 <span className="h-2 w-2 rounded-full bg-gray-800"></span>
                 <p className="font-semibold text-sm text-gray-700">
                   WHAT SETS US APART
                 </p>
               </div>
-              <h2 className="font-serif text-5xl font-bold mt-4 text-gray-900">
+              <h2 className="font-serif text-4xl font-bold mt-4 text-gray-900">
                 Driving Digital Success With Strategy Design
               </h2>
               <p className="text-gray-600 mt-6 leading-relaxed">

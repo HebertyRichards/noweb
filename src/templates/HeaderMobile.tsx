@@ -1,17 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { name: "Home", href: "#", active: true },
-  { name: "About Us", href: "#" },
-  { name: "Portfolio", href: "#" },
-  { name: "Pages", href: "#" },
-  { name: "Blog", href: "#" },
-  { name: "Contact Us", href: "#" },
-];
+import { navLinks } from "@/utils/exemples";
 
 export function HeaderMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,15 +12,22 @@ export function HeaderMobile() {
     <header className="bg-white py-4 px-4 sm:px-8 border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
-          <div className="h-10 w-10 bg-lime-400 rounded-full flex items-center justify-center">
+          <div className="h-10 w-10 bg-lime-300 rounded-full flex items-center justify-center">
             <span className="text-black font-bold text-sm italic -rotate-12 select-none"></span>
           </div>
-          <span className="text-4xl font-bold font-serif text-gray-800">
+          <span className="text-3xl font-bold font-serif text-gray-800">
             NEX
           </span>
         </a>
-        <div>
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <div className="flex items-center gap-4">
+          <button aria-label="Abrir busca">
+            <Search className="h-6 w-6 text-gray-700" />
+          </button>
+
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Abrir menu"
+          >
             {isMenuOpen ? (
               <X className="h-7 w-7" />
             ) : (
@@ -51,7 +50,7 @@ export function HeaderMobile() {
                 {link.name}
               </a>
             ))}
-            <Button className="bg-lime-400 w-full mt-4 text-white hover:bg-gray-800 rounded-lg py-3 font-semibold">
+            <Button className="bg-lime-300 w-full mt-4 text-black hover:bg-lime-400 rounded-lg py-3 font-semibold">
               Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-black" />
             </Button>
           </nav>

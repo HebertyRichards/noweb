@@ -11,23 +11,20 @@ export function Hero() {
             <p className="text-gray-400 font-medium mb-6">
               Without The Pretentiousness.!!
             </p>
-            <h1 className="text-6xl sm:text-7xl lg:text-9xl font-serif font-bold text-gray-800 leading-none">
+            <h1 className="text-3xl sm:text-6xl lg:text-9xl font-serif font-bold text-gray-800 leading-none">
               Digital
             </h1>
-
             <div className="flex flex-wrap justify-center lg:justify-start items-center gap-4 mt-5">
-              <div className="bg-lime-300 text-black font-bold py-4 px-8 rounded-full text-lg sm:text-xl tracking-wider shrink-0">
+              <div className="bg-lime-300 text-black font-bold py-2 px-4 rounded-full text-lg sm:py-4 px-8 text-xl tracking-wider shrink-0">
                 WEB DESIGN
               </div>
-
               <Avatar className="h-20 w-20 sm:h-24 sm:w-24 border-4 border-white shrink-0">
                 <AvatarImage src="" alt="Web Design Avatar" />
                 <AvatarFallback className="bg-black">
                   <User className="h-10 w-10 text-brand-green" />
                 </AvatarFallback>
               </Avatar>
-
-              <h1 className="text-6xl sm:text-7xl lg:text-9xl font-serif font-bold text-gray-800 leading-none">
+              <h1 className="text-3xl sm:text-6xl lg:text-9xl font-serif font-bold text-gray-800 leading-none">
                 Solution
               </h1>
             </div>
@@ -76,7 +73,6 @@ export function Hero() {
           </div>
         </div>
       </main>
-
       <div className="w-full">
         <img
           src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"

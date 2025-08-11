@@ -1,26 +1,6 @@
-import { Rocket, ScanSearch, RotateCw, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import React from "react";
-
-const workflowSteps = [
-  {
-    icon: Rocket,
-    title: "Research and Strategy",
-    description:
-      "Conduct thorough market of the research to the fast target audience behaviors. Submit as many design tasks",
-  },
-  {
-    icon: ScanSearch,
-    title: "Plan Customization",
-    description:
-      "Conduct thorough market of the research to the fast target audience behaviors. Submit as many design tasks",
-  },
-  {
-    icon: RotateCw,
-    title: "Finished & User Testing",
-    description:
-      "Conduct thorough market of the research to the fast target audience behaviors. Submit as many design tasks",
-  },
-];
+import { workflowSteps } from "@/utils/exemples";
 
 const WorkflowStep = ({
   icon: Icon,
@@ -50,9 +30,9 @@ export function WorkflowSection() {
     <section className="bg-white py-6">
       <div className="container mx-auto px-4 sm:px-8 mt-20">
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-1">
+          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1">
             <span className="h-2 w-2 rounded-full bg-gray-800"></span>
-            <p className="font-semibold text-sm text-gray-700">WORKFLOW</p>
+            <p className="font-semibold text-sm text-gray-600">WORKFLOW</p>
           </div>
           <h2 className="font-serif text-5xl font-bold mt-4 text-gray-900">
             How We Work

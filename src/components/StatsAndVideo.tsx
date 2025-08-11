@@ -1,11 +1,6 @@
 import { Play } from "lucide-react";
 import React from "react";
 
-interface StatCircleProps {
-  value: string;
-  label: string;
-}
-
 const StatCircle: React.FC<StatCircleProps> = ({ value, label }) => (
   <div className="flex flex-col items-center justify-center p-4 text-center border border-gray-200 rounded-full aspect-square transition-all duration-300 hover:bg-gray-100 hover:shadow-lg">
     <p className="text-4xl md:text-5xl font-bold text-gray-800">{value}</p>
@@ -24,7 +19,7 @@ export function StatsAndVideo() {
           <StatCircle value="88" label="Awards Achievement" />
         </div>
       </div>
-      <div className="relative w-full h-[300px] md:h-[550px] overflow-hidden group">
+      <div className="relative w-full h-[300px] md:h-[550px] overflow-hidden group mt-10">
         <img
           src="https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?q=80&w=2069&auto=format&fit=crop"
           alt="People celebrating"

@@ -1,11 +1,11 @@
-import { Header } from "./components/Header";
+import { Header } from "./templates/Header";
 import { Hero } from "./components/Hero";
 import { CollaborationSection } from "./components/ColaborationSection";
 import { EmpoweringBrands } from "./components/EmpoweringBrands";
 import { StatsAndVideo } from "./components/StatsAndVideo";
 import { WorkflowSection } from "./components/WorkFlowSection";
 import { DrivingSuccessSection } from "./components/DrivingSuccessSection";
-import { Footer } from "./components/Footer";
+import { Footer } from "./templates/Footer";
 
 function App() {
   return (

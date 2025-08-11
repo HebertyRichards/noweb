@@ -38,7 +38,7 @@ export function Footer() {
         <div className="container mx-auto px-4 sm:px-8 py-24">
           <div className="flex flex-col md:flex-row justify-between items-center gap-10">
             <div>
-              <h2 className="font-serif text-6xl md:text-7xl font-bold leading-tight">
+              <h2 className="font-serif text-3xl md:text-6xl font-bold leading-tight">
                 Let's Create
                 <br />
                 Something Great

@@ -49,7 +49,7 @@ export function Footer() {
             </div>
             <a
               href="#"
-              className="h-40 w-40 bg-lime-300 rounded-full flex-shrink-0 flex items-center justify-center text-center text-black font-bold text-lg hover:bg-lime-200 transition-colors group"
+              className="h-40 w-40 bg-lime-300 rounded-full flex-shrink-0 flex items-center justify-center text-center text-black font-bold text-lg hover:bg-lime-400 transition-colors group"
             >
               <span className="flex items-center gap-2">
                 Let's Talk{" "}

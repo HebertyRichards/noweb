@@ -66,7 +66,6 @@ export function HeaderDesktop() {
 
   const renderNavElement = (link: (typeof navLinks)[0]) => {
     const isDropdown = link.hasDropdown;
-    const isActive = link.active;
 
     if (isDropdown) {
       return (
@@ -75,12 +74,10 @@ export function HeaderDesktop() {
         >
           <DropdownMenuTrigger asChild>
             <button
-              className={`relative flex items-center gap-1 text-base font-medium transition-colors hover:text-lime-300 ${
-                isActive ? "text-lime-500" : "text-gray-700"
-              }`}
+              className={"relative flex items-center gap-1 text-base font-medium transition-colors hover:text-lime-300 $"}
             >
               {link.name} <ChevronDown className="h-4 w-4" />
-              {(openDropdown === link.name || isActive) && (
+              {(openDropdown === link.name) && (
                 <span className="absolute left-0 -bottom-3 h-0.5 w-full bg-lime-300 rounded-full" />
               )}
             </button>
@@ -175,7 +172,7 @@ export function HeaderDesktop() {
               </div>
             </DialogContent>
           </Dialog>
-          <Button className="bg-lime-300 text-black px-4 lg:px-6 py-2 lg:py-3 font-semibold text-sm lg:text-basee">
+          <Button className="bg-lime-300 text-black px-4 lg:px-6 py-2 lg:py-3 font-semibold text-sm lg:text-basee hover:bg-lime-400">
             Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-black" />
           </Button>
         </div>

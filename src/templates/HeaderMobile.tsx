@@ -2,9 +2,15 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { Menu, X, ArrowRight, Search } from "lucide-react";
+import { Menu, X, ArrowRight, Search, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { navLinks } from "@/utils/exemples"; 
+import { navLinks } from "@/utils/exemples";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Dialog,
   DialogContent,
@@ -15,9 +21,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
-
 export function HeaderMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState<AddressData | null>(null);
@@ -59,6 +65,54 @@ export function HeaderMobile() {
     }
   };
 
+  const renderNavElement = (link: (typeof navLinks)[0]) => {
+    const { name, href, hasDropdown, items } = link;
+
+    if (hasDropdown) {
+      return (
+        <DropdownMenu
+          onOpenChange={(isOpen) => setOpenDropdown(isOpen ? name : null)}
+        >
+          <DropdownMenuTrigger asChild>
+            <button
+              className={
+                "relative w-full flex justify-between items-center text-lg font-medium py-2 transition-colors hover:text-lime-500"
+              }
+            >
+              <span>{name}</span>
+              <ChevronDown
+                className={`h-5 w-5 transition-transform ${
+                  openDropdown === name ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="w-[--radix-dropdown-menu-trigger-width]"
+            align="start"
+          >
+            {items?.map((item) => (
+              <DropdownMenuItem key={item}>{item}</DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
+
+    return (
+      <a
+        href={href}
+        className={
+          "relative block text-lg font-medium py-2 transition-colors hover:text-lime-500"
+        }
+      >
+        {name}
+        (
+        <span className="absolute left-0 bottom-1 h-0.5 w-1/4 bg-lime-400" />)
+      </a>
+    );
+  };
+
   return (
     <header className="bg-white py-4 px-4 sm:px-8 border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between">
@@ -73,9 +127,9 @@ export function HeaderMobile() {
         <div className="flex items-center gap-4">
           <Dialog>
             <DialogTrigger asChild>
-              <button aria-label="Abrir busca">
-                <Search className="h-6 w-6 text-gray-700" />
-              </button>
+              <div className="p-2 border border-gray-200 rounded-md">
+                <Search className="h-6 w-6 text-gray-700 cursor-pointer" />
+              </div>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
@@ -139,20 +193,12 @@ export function HeaderMobile() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="lg:hidden mt-4 p-4 bg-white border-t border-gray-200">
-          <nav className="flex flex-col gap-4">
+        <div className="absolute top-full left-0 w-full bg-white border-t border-gray-200 p-4 shadow-lg lg:hidden">
+          <nav className="flex flex-col gap-2">
             {navLinks.map((link) => (
-              <a
-                href={link.href}
-                key={link.name}
-                className={`text-lg font-medium ${
-                  link.active ? "text-lime-500" : "text-gray-800"
-                }`}
-              >
-                {link.name}
-              </a>
+              <div key={link.name}>{renderNavElement(link)}</div>
             ))}
-            <Button className="bg-lime-300 w-full mt-4 text-black hover:bg-lime-400 rounded-lg py-3 font-semibold">
+            <Button className="w-full mt-4 bg-lime-300 text-black hover:bg-lime-400 rounded-lg py-3 font-semibold">
               Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-black" />
             </Button>
           </nav>

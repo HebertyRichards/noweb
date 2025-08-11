@@ -24,7 +24,6 @@ export const workflowSteps = [
     {
       name: "Home",
       href: "#",
-      active: true,
       hasDropdown: true,
       items: ["Homepage V1", "Homepage V2"],
     },
@@ -42,14 +41,5 @@ export const workflowSteps = [
       items: ["Pages V1", "Pages V2"],
     },
     { name: "Blog", href: "#", hasDropdown: true, items: ["Blog V1", "Blog V2"] },
-    { name: "Contact Us", href: "#" },
-  ];
-
-  export const navLinksMobile = [
-    { name: "Home", href: "#", active: true },
-    { name: "About Us", href: "#" },
-    { name: "Portfolio", href: "#" },
-    { name: "Pages", href: "#" },
-    { name: "Blog", href: "#" },
     { name: "Contact Us", href: "#" },
   ];

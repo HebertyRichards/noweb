@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { FormEvent } from "react";
+import type { FormEvent, ChangeEvent } from "react";
 import { Menu, X, ArrowRight, Search, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { navLinks } from "@/utils/exemples";
@@ -29,6 +29,17 @@ export function HeaderMobile() {
   const [address, setAddress] = useState<AddressData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const handleCepChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    const digitsOnly = inputValue.replace(/\D/g, "");
+    const limitedDigits = digitsOnly.slice(0, 8);
+    let formattedCep = limitedDigits;
+    if (limitedDigits.length > 5) {
+      formattedCep = `${limitedDigits.slice(0, 5)}-${limitedDigits.slice(5)}`;
+    }
+    setCep(formattedCep);
+  };
 
   const handleCepSearch = async (event: FormEvent) => {
     event.preventDefault();
@@ -144,8 +155,8 @@ export function HeaderMobile() {
                     id="cep-mobile"
                     placeholder="Ex: 01001-000"
                     value={cep}
-                    onChange={(e) => setCep(e.target.value)}
-                    className="flex-1"
+                    onChange={handleCepChange}
+                    maxLength={9}
                   />
                   <Button
                     type="submit"
@@ -163,6 +174,11 @@ export function HeaderMobile() {
                     <p>
                       <strong>Logradouro:</strong> {address.logradouro}
                     </p>
+                    {address.complemento && (
+                      <p>
+                        <strong>Complemento:</strong> {address.complemento}
+                      </p>
+                    )}
                     <p>
                       <strong>Bairro:</strong> {address.bairro}
                     </p>

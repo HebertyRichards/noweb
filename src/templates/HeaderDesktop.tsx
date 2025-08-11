@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { FormEvent } from "react";
+import type { FormEvent, ChangeEvent } from "react";
 import { ChevronDown, Search, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,6 +28,17 @@ export function HeaderDesktop() {
   const [address, setAddress] = useState<AddressData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const handleCepChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    const digitsOnly = inputValue.replace(/\D/g, "");
+    const limitedDigits = digitsOnly.slice(0, 8);
+    let formattedCep = limitedDigits;
+    if (limitedDigits.length > 5) {
+      formattedCep = `${limitedDigits.slice(0, 5)}-${limitedDigits.slice(5)}`;
+    }
+    setCep(formattedCep);
+  };
 
   const handleCepSearch = async (event: FormEvent) => {
     event.preventDefault();
@@ -74,7 +85,9 @@ export function HeaderDesktop() {
         >
           <DropdownMenuTrigger asChild>
             <button
-              className={"relative flex items-center gap-1 text-base font-medium transition-colors hover:text-lime-300 $"}
+              className={
+                "relative flex items-center gap-1 text-base font-medium transition-colors hover:text-lime-300"
+              }
             >
               {link.name} <ChevronDown className="h-4 w-4" />
               {(openDropdown === link.name) && (
@@ -136,7 +149,8 @@ export function HeaderDesktop() {
                     id="cep"
                     placeholder="Ex: 01001-000"
                     value={cep}
-                    onChange={(e) => setCep(e.target.value)}
+                    onChange={handleCepChange}
+                    maxLength={9}
                     className="flex-1"
                   />
                   <Button
@@ -155,6 +169,11 @@ export function HeaderDesktop() {
                     <p>
                       <strong>Logradouro:</strong> {address.logradouro}
                     </p>
+                    {address.complemento && (
+                      <p>
+                        <strong>Complemento:</strong> {address.complemento}
+                      </p>
+                    )}
                     <p>
                       <strong>Bairro:</strong> {address.bairro}
                     </p>

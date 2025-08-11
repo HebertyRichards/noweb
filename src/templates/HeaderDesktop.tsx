@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import type { FormEvent } from "react";
 import { ChevronDown, Search, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,10 +10,59 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { navLinks } from "@/utils/exemples";
 
 export function HeaderDesktop() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const [cep, setCep] = useState("");
+  const [address, setAddress] = useState<AddressData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleCepSearch = async (event: FormEvent) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    setAddress(null);
+    const sanitizedCep = cep.replace(/\D/g, "");
+
+    if (sanitizedCep.length !== 8) {
+      setError("CEP inválido. Por favor, digite 8 números.");
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://viacep.com.br/ws/${sanitizedCep}/json/`
+      );
+      const data = await response.json();
+      if (data.erro) {
+        setError("CEP não encontrado.");
+        setAddress(null);
+      } else {
+        setAddress(data);
+      }
+    } catch (error: unknown) {
+      let errorMessage = "Falha ao buscar o CEP. Tente novamente.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const renderNavElement = (link: (typeof navLinks)[0]) => {
     const isDropdown = link.hasDropdown;
@@ -69,9 +119,62 @@ export function HeaderDesktop() {
           {navLinks.map((link) => renderNavElement(link))}
         </nav>
         <div className="flex items-center gap-4">
-          <div className="p-2 border border-gray-200 rounded-md">
-            <Search className="h-5 w-5 lg:h-6 lg:w-6 text-gray-700 cursor-pointer" />
-          </div>
+          <Dialog>
+            <DialogTrigger asChild>
+              <div className="p-2 border border-gray-200 rounded-md">
+                <Search className="h-5 w-5 lg:h-6 lg:w-6 text-gray-700 cursor-pointer" />
+              </div>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Buscar Endereço por CEP</DialogTitle>
+                <DialogDescription>
+                  Digite um CEP para encontrar o endereço. Você pode pesquisar
+                  quantas vezes quiser.
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleCepSearch} className="grid gap-4 py-4">
+                <div className="flex gap-2">
+                  <Input
+                    id="cep"
+                    placeholder="Ex: 01001-000"
+                    value={cep}
+                    onChange={(e) => setCep(e.target.value)}
+                    className="flex-1"
+                  />
+                  <Button
+                    className="bg-lime-300 text-black cursor-pointer hover:bg-lime-200"
+                    type="submit"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Buscando..." : "Buscar"}
+                  </Button>
+                </div>
+              </form>
+              <div className="mt-4">
+                {error && <p className="text-red-500 text-sm">{error}</p>}
+                {address && (
+                  <div className="space-y-1 text-sm p-4 bg-slate-50 rounded-md border">
+                    <p>
+                      <strong>Logradouro:</strong> {address.logradouro}
+                    </p>
+                    <p>
+                      <strong>Bairro:</strong> {address.bairro}
+                    </p>
+                    <p>
+                      <strong>Cidade:</strong> {address.localidade}
+                    </p>
+                    <p>
+                      <strong>Estado:</strong> {address.uf}
+                    </p>
+                    <p>
+                      <strong>CEP:</strong> {address.cep}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </DialogContent>
+          </Dialog>
           <Button className="bg-lime-300 text-black px-4 lg:px-6 py-2 lg:py-3 font-semibold text-sm lg:text-basee">
             Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-black" />
           </Button>

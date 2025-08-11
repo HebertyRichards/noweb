@@ -16,3 +16,11 @@ type StrategyPillProps = {
     description: string;
     icon: React.ElementType;
   }
+
+  type AddressData = {
+    logradouro: string;
+    bairro: string;
+    localidade: string;
+    uf: string;
+    cep: string;
+  };

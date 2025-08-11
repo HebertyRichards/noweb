@@ -4,6 +4,8 @@ import { CollaborationSection } from "./components/ColaborationSection";
 import { EmpoweringBrands } from "./components/EmpoweringBrands";
 import { StatsAndVideo } from "./components/StatsAndVideo";
 import { WorkflowSection } from "./components/WorkFlowSection";
+import { DrivingSuccessSection } from "./components/DrivingSuccessSection";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <EmpoweringBrands />
       <StatsAndVideo />
       <WorkflowSection />
+      <DrivingSuccessSection />
+      <Footer />
     </div>
   );
 }

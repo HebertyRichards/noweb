@@ -1,12 +1,63 @@
 "use client";
 
 import { useState } from "react";
+import type { FormEvent } from "react";
 import { Menu, X, ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { navLinks } from "@/utils/exemples";
+import { navLinks } from "@/utils/exemples"; 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+
 
 export function HeaderMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const [cep, setCep] = useState("");
+  const [address, setAddress] = useState<AddressData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleCepSearch = async (event: FormEvent) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    setAddress(null);
+    const sanitizedCep = cep.replace(/\D/g, "");
+
+    if (sanitizedCep.length !== 8) {
+      setError("CEP inválido. Por favor, digite 8 números.");
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://viacep.com.br/ws/${sanitizedCep}/json/`
+      );
+      const data = await response.json();
+      if (data.erro) {
+        setError("CEP não encontrado.");
+        setAddress(null);
+      } else {
+        setAddress(data);
+      }
+    } catch (error: unknown) {
+      let errorMessage = "Falha ao buscar o CEP. Tente novamente.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <header className="bg-white py-4 px-4 sm:px-8 border-b border-gray-200 sticky top-0 z-50">
@@ -20,10 +71,61 @@ export function HeaderMobile() {
           </span>
         </a>
         <div className="flex items-center gap-4">
-          <button aria-label="Abrir busca">
-            <Search className="h-6 w-6 text-gray-700" />
-          </button>
-
+          <Dialog>
+            <DialogTrigger asChild>
+              <button aria-label="Abrir busca">
+                <Search className="h-6 w-6 text-gray-700" />
+              </button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Buscar Endereço por CEP</DialogTitle>
+                <DialogDescription>
+                  Digite um CEP para encontrar o endereço.
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleCepSearch} className="grid gap-4 py-4">
+                <div className="flex gap-2">
+                  <Input
+                    id="cep-mobile"
+                    placeholder="Ex: 01001-000"
+                    value={cep}
+                    onChange={(e) => setCep(e.target.value)}
+                    className="flex-1"
+                  />
+                  <Button
+                    type="submit"
+                    disabled={isLoading}
+                    className="bg-lime-300 text-black hover:bg-lime-200"
+                  >
+                    {isLoading ? "Buscando..." : "Buscar"}
+                  </Button>
+                </div>
+              </form>
+              <div className="mt-4 min-h-[120px]">
+                {error && <p className="text-red-500 text-sm">{error}</p>}
+                {address && (
+                  <div className="space-y-1 text-sm p-4 bg-slate-50 rounded-md border">
+                    <p>
+                      <strong>Logradouro:</strong> {address.logradouro}
+                    </p>
+                    <p>
+                      <strong>Bairro:</strong> {address.bairro}
+                    </p>
+                    <p>
+                      <strong>Cidade:</strong> {address.localidade}
+                    </p>
+                    <p>
+                      <strong>Estado:</strong> {address.uf}
+                    </p>
+                    <p>
+                      <strong>CEP:</strong> {address.cep}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </DialogContent>
+          </Dialog>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Abrir menu"

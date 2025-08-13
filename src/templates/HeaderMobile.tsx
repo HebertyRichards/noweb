@@ -6,12 +6,6 @@ import { Menu, X, ArrowRight, Search, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { navLinks } from "@/utils/exemples";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -23,7 +17,7 @@ import { Input } from "@/components/ui/input";
 
 export function HeaderMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [activeLink, setActiveLink] = useState("Home");
 
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState<AddressData | null>(null);
@@ -77,50 +71,28 @@ export function HeaderMobile() {
   };
 
   const renderNavElement = (link: (typeof navLinks)[0]) => {
-    const { name, href, hasDropdown, items } = link;
-
-    if (hasDropdown) {
-      return (
-        <DropdownMenu
-          onOpenChange={(isOpen) => setOpenDropdown(isOpen ? name : null)}
-        >
-          <DropdownMenuTrigger asChild>
-            <button
-              className={
-                "relative w-full flex justify-between items-center text-lg font-medium py-2 transition-colors hover:text-lime-500"
-              }
-            >
-              <span>{name}</span>
-              <ChevronDown
-                className={`h-5 w-5 transition-transform ${
-                  openDropdown === name ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="w-[--radix-dropdown-menu-trigger-width]"
-            align="start"
-          >
-            {items?.map((item) => (
-              <DropdownMenuItem key={item}>{item}</DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    }
+    const isActive = activeLink === link.name;
 
     return (
-      <a
-        href={href}
-        className={
-          "relative block text-lg font-medium py-2 transition-colors hover:text-lime-500"
-        }
+      <button
+        key={link.name}
+        onClick={() => setActiveLink(link.name)}
+        className={`relative w-full flex justify-between items-center text-lg font-medium py-3 transition-colors duration-200
+          ${isActive ? "text-lime-400" : "text-gray-800"}`}
       >
-        {name}
-        (
-        <span className="absolute left-0 bottom-1 h-0.5 w-1/4 bg-lime-400" />)
-      </a>
+        <span>{link.name}</span>
+        <span
+          className={`absolute left-0 -bottom-1 h-0.5 bg-lime-400 rounded-full transition-all duration-300 ease-in-out
+            ${isActive ? "w-1/4" : "w-0"}`}
+        />
+        {link.hasDropdown && (
+          <ChevronDown
+            className={`h-5 w-5 transition-colors ${
+              isActive ? "text-lime-400" : "text-gray-400"
+            }`}
+          />
+        )}
+      </button>
     );
   };
 
@@ -128,12 +100,12 @@ export function HeaderMobile() {
     <header className="bg-white py-4 px-4 sm:px-8 border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
-          <div className="h-10 w-10 bg-lime-300 rounded-full flex items-center justify-center">
-            <span className="text-black font-bold text-sm italic -rotate-12 select-none"></span>
-          </div>
-          <span className="text-3xl font-bold font-serif text-gray-800">
-            NEX
-          </span>
+          <img src="/Vector.svg" alt="NEX logo" className="h-10 w-10" />
+          <img
+            src="/Nexin.svg"
+            alt="NEX text"
+            className="h-16 w-16 lg:h-20 lg:w-20"
+          />
         </a>
         <div className="flex items-center gap-4">
           <Dialog>
@@ -209,12 +181,10 @@ export function HeaderMobile() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white border-t border-gray-200 p-4 shadow-lg lg:hidden">
+        <div className="absolute top-full left-0 w-full bg-white border-t border-gray-200 p-4 shadow-lg">
           <nav className="flex flex-col gap-2">
-            {navLinks.map((link) => (
-              <div key={link.name}>{renderNavElement(link)}</div>
-            ))}
-            <Button className="w-full mt-4 bg-lime-300 text-black hover:bg-lime-400 rounded-lg py-3 font-semibold">
+            {navLinks.map((link) => renderNavElement(link))}
+            <Button className="w-full mt-4 bg-lime-300 text-black rounded-none hover:bg-lime-400 py-3 font-semibold">
               Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-black" />
             </Button>
           </nav>

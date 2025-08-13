@@ -2,14 +2,8 @@
 
 import { useState } from "react";
 import type { FormEvent, ChangeEvent } from "react";
-import { ChevronDown, Search, ArrowRight } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   Dialog,
   DialogContent,
@@ -22,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { navLinks } from "@/utils/exemples";
 
 export function HeaderDesktop() {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [activeLink, setActiveLink] = useState("Home");
 
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState<AddressData | null>(null);
@@ -76,38 +70,37 @@ export function HeaderDesktop() {
   };
 
   const renderNavElement = (link: (typeof navLinks)[0]) => {
-    const isDropdown = link.hasDropdown;
+    const baseClasses =
+      "flex items-center gap-1 px-1 pt-1 font-medium transition-all duration-300 ease-in-out text-sm lg:text-base";
 
-    if (isDropdown) {
+    if (link.hasDropdown) {
+      const isActive = activeLink === link.name;
       return (
-        <DropdownMenu
-          onOpenChange={(isOpen) => setOpenDropdown(isOpen ? link.name : null)}
+        <button
+          key={link.name}
+          onClick={() => setActiveLink(link.name)}
+          className={`relative ${baseClasses} ${
+            isActive
+              ? "text-lime-300 -translate-y-1"
+              : "text-gray-700 hover:text-lime-300"
+          }`}
         >
-          <DropdownMenuTrigger asChild>
-            <button
-              className={
-                "relative flex items-center gap-1 text-base font-medium transition-colors hover:text-lime-300"
-              }
-            >
-              {link.name} <ChevronDown className="h-4 w-4" />
-              {(openDropdown === link.name) && (
-                <span className="absolute left-0 -bottom-3 h-0.5 w-full bg-lime-300 rounded-full" />
-              )}
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            {link.items?.map((item) => (
-              <DropdownMenuItem key={item}>{item}</DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+          {link.name}
+          <ChevronDown className="h-4 w-4" />
+          <span
+            className={`absolute left-0 -bottom-2 h-0.5 w-full rounded-full bg-lime-300 transition-opacity duration-300 ${
+              isActive ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </button>
       );
     }
 
     return (
       <a
+        key={link.name}
         href={link.href}
-        className="text-sm font-medium transition-colors text-gray-700 hover:text-lime-300"
+        className={`${baseClasses} text-gray-700 transition-colors hover:text-lime-300`}
       >
         {link.name}
       </a>
@@ -117,18 +110,22 @@ export function HeaderDesktop() {
   return (
     <header className="bg-white py-4 px-4 sm:px-8 border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <div className="h-10 w-10 bg-lime-300 rounded-full flex items-center justify-center">
-            <span className="text-black font-bold text-sm italic -rotate-12 select-none"></span>
-          </div>
-          <span className="text-2xl lg:text-4xl font-bold font-serif text-gray-800">
-            NEX
-          </span>
+        <a href="#" className="flex items-center gap-2 flex-shrink-0">
+          <img
+            src="/Vector.svg"
+            alt="NEX logo"
+            className="h-8 w-8 lg:h-10 lg:w-10"
+          />
+          <img
+            src="/Nexin.svg"
+            alt="NEX text"
+            className="h-16 w-16 lg:h-20 lg:w-20"
+          />
         </a>
-        <nav className="hidden md:flex items-center gap-4 lg:gap-6 pb-3 pt-2">
+        <nav className="hidden md:flex items-center gap-2 lg:gap-4 pb-3 pt-2">
           {navLinks.map((link) => renderNavElement(link))}
         </nav>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <Dialog>
             <DialogTrigger asChild>
               <div className="p-2 border border-gray-200 rounded-md">
@@ -191,8 +188,11 @@ export function HeaderDesktop() {
               </div>
             </DialogContent>
           </Dialog>
-          <Button className="bg-lime-300 text-black px-4 lg:px-6 py-2 lg:py-3 font-semibold text-sm lg:text-basee hover:bg-lime-400">
-            Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-black" />
+          <Button
+            variant="default"
+            className="bg-lime-300 text-black rounded-none font-semibold text-sm lg:text-base hover:bg-lime-400 px-5 py-5 lg:px-7 lg:py-7"
+          >
+            Get A Quote ↗
           </Button>
         </div>
       </div>

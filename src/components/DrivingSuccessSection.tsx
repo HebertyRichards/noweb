@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import React from "react";
 
 const StrategyPill: React.FC<StrategyPillProps> = ({
@@ -20,7 +19,7 @@ const StrategyPill: React.FC<StrategyPillProps> = ({
     <div style={{ width: pillWidth }} className="flex justify-center">
       <div className="relative">
         <div
-          className="bg-lime-300 rounded-[30px] w-full pb-4 px-4 text-center"
+          className="bg-lime-300 rounded-[30px] w-full pb-7 px-5 text-center"
           style={{ paddingTop: `${pillPt}px` }}
         >
           <h3 className="font-semibold text-base text-gray-800 leading-tight">
@@ -40,7 +39,7 @@ const StrategyPill: React.FC<StrategyPillProps> = ({
           <img
             src={imgSrc}
             alt={label}
-            className="w-full h-full rounded-full object-cover border-4 border-white shadow-lg"
+            className="w-full h-full rounded-full object-cover shadow-lg"
           />
         </div>
       </div>
@@ -61,7 +60,7 @@ export function DrivingSuccessSection() {
                   WHAT SETS US APART
                 </p>
               </div>
-              <h2 className="font-serif text-4xl font-bold mt-4 text-gray-900">
+              <h2 className="font-[Gallery-Modern] text-4xl font-bold mt-4 text-gray-900">
                 Driving Digital Success With Strategy Design
               </h2>
               <p className="text-gray-600 mt-6 leading-relaxed">
@@ -69,63 +68,54 @@ export function DrivingSuccessSection() {
                 Partners With Us More Than Half It’s More Than Just The Visuals.
               </p>
             </div>
-            <img
-              src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop"
-              alt="Team working on a laptop"
-              className="w-full h-full object-cover rounded-2xl"
-            />
+            <img src="/driving.svg" alt="Team working on a laptop" />
           </div>
           <div className="flex flex-col gap-10">
-            <img
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop"
-              alt="People in a meeting"
-              className="w-full h-auto object-cover rounded-2xl"
-            />
-            <div>
-              <p className="text-gray-600 leading-relaxed">
-                We Believe That The Surest Measure Of Success Is When Our
-                Partners With Us More Than Half It’s More Than Just The Visuals.
-                We're Here To Support Your Growth.
-              </p>
-              <p className="text-gray-600 mt-4 leading-relaxed">
-                We Believe That The Surest Measure Of Success Is When Our
-                Partners With Us More Than Half It’s More Than Just The Visuals.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8 items-start">
-                <div>
-                  <p className="text-gray-600 text-sm">
-                    Conduct thorough market research to the fast target audience
-                    behaviours. Submit as many design tasks
-                  </p>
-                  <a
-                    href="#"
-                    className="mt-6 h-24 w-24 rounded-full border border-gray-300 flex items-center justify-center text-gray-700 text-sm font-semibold text-center hover:border-gray-900 transition-colors"
-                  >
-                    <span className="flex items-center gap-1">
-                      Contact Us <ArrowRight className="h-4 w-4" />
-                    </span>
-                  </a>
-                </div>
-                <div>
-                  <h3 className="font-serif text-2xl font-bold text-gray-900">
-                    Our Mission
-                  </h3>
-                  <p className="text-gray-600 mt-2 text-sm">
-                    Conduct thorough market research to the fast target audience
-                    behaviours.
-                  </p>
-                </div>
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
+              <img
+                src="driving2.svg"
+                alt="People in a meeting"
+                className="w-[283px] h-[297px] object-cover flex-shrink-0"
+              />
+              <div>
+                <p className="text-gray-600 leading-relaxed">
+                  We Believe That The Surest Measure Of Success Is When Our
+                  Partners With Us More Than Half It’s More Than Just The
+                  Visuals. We're Here To Support Your Growth.
+                </p>
+                <p className="text-gray-600 mt-4 leading-relaxed">
+                  We Believe That The Surest Measure Of Success Is When Our
+                  Partners With Us More Than Half It’s More Than Just The
+                  Visuals.
+                </p>
               </div>
-              <div className="mt-16 flex flex-row items-start justify-center gap-4 sm:gap-8">
-                <StrategyPill
-                  imgSrc="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=400&auto=format&fit=crop"
-                  label="Marketing Strategy"
-                />
-                <StrategyPill
-                  imgSrc="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=400&auto=format&fit=crop"
-                  label="UX/UI Solution"
-                />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start">
+              <div>
+                <p className="text-gray-600 text-sm">
+                  Conduct thorough market research to the fast target audience
+                  behaviours. Submit as many design tasks
+                </p>
+                <a
+                  href="#"
+                  className="mt-6 h-30 w-30 rounded-full border border-black flex items-center justify-center text-sm font-semibold text-center hover:border-gray-900 transition-colors"
+                >
+                  <span className="flex items-center gap-1">Contact Us ↗</span>
+                </a>
               </div>
+              <div>
+                <h3 className="font-[Gallery-Modern] text-2xl font-bold text-gray-900">
+                  Our Mission
+                </h3>
+                <p className="text-gray-600 mt-2 text-sm">
+                  Conduct thorough market research to the fast target audience
+                  behaviours.
+                </p>
+              </div>
+            </div>
+            <div className="mt-8 flex flex-row items-start justify-center gap-4 sm:gap-8">
+              <StrategyPill imgSrc="/iconft.svg" label="Marketing Strategy" />
+              <StrategyPill imgSrc="/iconft2.svg" label="UX/UI Solution" />
             </div>
           </div>
         </div>

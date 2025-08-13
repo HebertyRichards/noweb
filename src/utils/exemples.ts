@@ -1,19 +1,18 @@
-import { Rocket, ScanSearch, RotateCw } from "lucide-react";
 export const workflowSteps = [
     {
-      icon: Rocket,
+      icon: "/icon.svg",
       title: "Research and Strategy",
       description:
         "Conduct thorough market of the research to the fast target audience behaviors. Submit as many design tasks",
     },
     {
-      icon: ScanSearch,
+      icon: "/icon2.svg",
       title: "Plan Customization",
       description:
         "Conduct thorough market of the research to the fast target audience behaviors. Submit as many design tasks",
     },
     {
-      icon: RotateCw,
+      icon: "/icon3.svg",
       title: "Finished & User Testing",
       description:
         "Conduct thorough market of the research to the fast target audience behaviors. Submit as many design tasks",

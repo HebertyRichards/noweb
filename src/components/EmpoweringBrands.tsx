@@ -11,7 +11,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
   return (
     <div
-      className="p-8 border rounded-2xl bg-white border-gray-200 hover:border-lime-300 transition-colors duration-300 flex flex-col h-[480px]"
+      className="p-8 lg:p-6 border rounded-2xl bg-white border-gray-200 hover:border-lime-300 transition-colors duration-300 flex flex-col h-[480px] lg:h-[420px]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -20,15 +20,20 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           <span className="h-2 w-2 rounded-full bg-gray-800"></span>
           <p className="font-semibold text-sm text-gray-600">{category}</p>
         </div>
-        <h3 className="font-serif text-3xl mt-4 text-gray-900">{title}</h3>
+        <h3 className="font-serif text-3xl lg:text-2xl mt-4 text-gray-900">
+          {title}
+        </h3>
         <div className="my-8">
-          <img src={imgSrc} alt={title} className="h-12 w-12 text-gray-800" />
+          <img
+            src={imgSrc}
+            alt={title}
+            className="h-12 w-12 lg:h-10 lg:w-10 text-gray-800 font-[Gallery-Modern]"
+          />
         </div>
         <p className="text-gray-600 leading-relaxed">{description}</p>
       </div>
-
-      <div className="flex justify-end -mb-7 -mr-7">
-        <button className="h-14 w-14 rounded-full flex items-center justify-center border-2 border-gray-300 text-gray-400 bg-white hover:bg-lime-300 hover:border-lime-300 hover:text-black transition-colors duration-300">
+      <div className="flex justify-end -mb-7 lg:-mb-6 -mr-7 lg:-mr-6">
+        <button className="h-14 w-14 lg:h-12 lg:w-12 rounded-full flex items-center justify-center border-2 border-gray-300 text-gray-400 bg-white hover:bg-lime-300 hover:border-lime-300 hover:text-black transition-colors duration-300">
           {isHovered ? (
             <ArrowRight className="h-6 w-6" />
           ) : (
@@ -56,7 +61,7 @@ export function EmpoweringBrands() {
               <span className="h-2 w-2 rounded-full bg-gray-800"></span>
               <p className="font-semibold text-sm text-gray-600">SERVICES</p>
             </div>
-            <h2 className="font-serif text-4xl font-bold mt-4 text-gray-900 max-w-2xl">
+            <h2 className="font-[Gallery-Modern] text-4xl font-bold mt-4 text-gray-900 max-w-2xl">
               Empowering Brands Through Strategic Digital Services
             </h2>
             <p className="text-gray-600 mt-6 max-w-xl leading-relaxed">

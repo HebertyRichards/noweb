@@ -1,27 +1,28 @@
-import { ArrowRight } from "lucide-react";
 import React from "react";
+import { ArrowRight } from "lucide-react";
 import { workflowSteps } from "@/utils/exemples";
 
 const WorkflowStep = ({
-  icon: Icon,
+  icon,
   title,
   description,
 }: (typeof workflowSteps)[0]) => (
-  <div className="flex flex-col items-center text-center max-w-xs mx-auto">
-    <div className="h-24 w-24 border-2 border-gray-300 rounded-full flex items-center justify-center bg-white">
-      <Icon className="h-12 w-12 text-gray-800" />
+  <div className="relative flex-shrink-0">
+    <img src={icon} alt={`${title} icon`} className="h-24 w-24" />
+    <div className="absolute left-1/2 -translate-x-1/2 mt-6 w-60 text-center">
+      <h3 className="font-semibold text-xl text-gray-900">{title}</h3>
+      <p className="mt-2 text-sm text-gray-500">{description}</p>
     </div>
-    <h3 className="mt-6 font-semibold text-xl text-gray-900">{title}</h3>
-    <p className="mt-2 text-gray-500">{description}</p>
   </div>
 );
 
 const StepConnector = ({ stepNumber }: { stepNumber: string }) => (
-  <div className="flex-1 items-center hidden md:flex">
-    <div className="flex-1 h-px bg-gray-300"></div>
-    <span className="mx-4 text-5xl font-bold text-gray-200">{stepNumber}</span>
-    <div className="flex-1 h-px bg-gray-300"></div>
-    <ArrowRight className="h-6 w-6 text-gray-300" />
+  <div className="flex-1 flex items-center min-w-0 mx-4">
+    <div className="flex-1 h-px bg-gray-900" />
+    <ArrowRight className="h-5 w-5 text-gray-900 flex-shrink-0" />
+    <span className="ml-4 font-serif font-bold text-7xl text-gray-200">
+      {stepNumber}
+    </span>
   </div>
 );
 
@@ -38,13 +39,12 @@ export function WorkflowSection() {
             How We Work
           </h2>
         </div>
-        <div className="mt-24 flex flex-col md:flex-row items-center justify-between gap-y-12">
+
+        <div className="mt-24 pb-32 flex flex-col md:flex-row items-center justify-center gap-y-24 md:gap-y-0">
           {workflowSteps.map((step, index) => (
             <React.Fragment key={step.title}>
               <WorkflowStep {...step} />
-              {index < workflowSteps.length - 1 && (
-                <StepConnector stepNumber={`0${index + 2}`} />
-              )}
+              <StepConnector stepNumber={`0${index + 1}`} />
             </React.Fragment>
           ))}
         </div>

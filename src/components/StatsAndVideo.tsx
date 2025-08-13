@@ -1,4 +1,3 @@
-import { Play } from "lucide-react";
 import React from "react";
 
 const StatCircle: React.FC<{
@@ -49,20 +48,16 @@ export function StatsAndVideo() {
       </div>
       <div className="relative w-full h-[300px] md:h-[550px] overflow-hidden group mt-20">
         <img
-          src="https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?q=80&w=2069&auto=format&fit=crop"
+          src="/Rectangle.svg"
           alt="Pessoas a celebrar"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <button className="flex items-center gap-4 text-white group">
+          <button className="flex items-center gap-4 text-white group cursor-pointer">
             <div className="relative flex items-center justify-center">
-              <span className="absolute inline-flex h-24 w-24 animate-ping rounded-full bg-white/50 opacity-75"></span>
-              <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110">
-                <Play className="h-8 w-8 text-black fill-black ml-1" />
-              </span>
+              <img src="Btn.svg" alt="play vídeo" className="h-auto w-auto" />
             </div>
-            <span className="font-bold text-lg tracking-wider">PLAY VIDEO</span>
           </button>
         </div>
       </div>

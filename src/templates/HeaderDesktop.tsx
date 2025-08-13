@@ -128,7 +128,7 @@ export function HeaderDesktop() {
         <div className="flex items-center gap-2 sm:gap-4">
           <Dialog>
             <DialogTrigger asChild>
-              <div className="p-2 border border-gray-200 rounded-md">
+              <div className="p-2 border border-gray-200 rounded-md lg:p-4">
                 <Search className="h-5 w-5 lg:h-6 lg:w-6 text-gray-700 cursor-pointer" />
               </div>
             </DialogTrigger>

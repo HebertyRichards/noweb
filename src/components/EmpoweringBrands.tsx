@@ -1,17 +1,11 @@
-import {
-  ArrowRight,
-  Code,
-  Shuffle,
-  PenTool,
-  ArrowDownRight,
-} from "lucide-react";
+import { ArrowRight, ArrowDownRight } from "lucide-react";
 import React, { useState } from "react";
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
   category,
   title,
   description,
-  icon: Icon,
+  imgSrc,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -28,7 +22,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
         <h3 className="font-serif text-3xl mt-4 text-gray-900">{title}</h3>
         <div className="my-8">
-          <Icon className="h-12 w-12 text-gray-800" />
+          <img src={imgSrc} alt={title} className="h-12 w-12 text-gray-800" />
         </div>
         <p className="text-gray-600 leading-relaxed">{description}</p>
       </div>
@@ -77,19 +71,19 @@ export function EmpoweringBrands() {
             category="Visual Branding"
             title="Web Design And Development"
             description={cardDescription}
-            icon={Code}
+            imgSrc="/Vector1.svg"
           />
           <ServiceCard
             category="Brand Strategy"
             title="Branding And Creative Services"
             description={cardDescription}
-            icon={Shuffle}
+            imgSrc="/Vector2.svg"
           />
           <ServiceCard
             category="Identity Build"
             title="Creative Digital Agency"
             description={cardDescription}
-            icon={PenTool}
+            imgSrc="/Vector3.svg"
           />
         </div>
       </div>

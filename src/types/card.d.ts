@@ -14,7 +14,7 @@ type StrategyPillProps = {
     category: string;
     title: string;
     description: string;
-    icon: React.ElementType;
+    imgSrc: string; 
   }
 
   type AddressData = {

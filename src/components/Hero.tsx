@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 export function Hero() {
   return (
     <>
@@ -40,9 +42,10 @@ export function Hero() {
               </p>
               <a
                 href="#"
-                className="self-center lg:self-end font-semibold text-gray-800 hover:text-gray-900 transition-colors text-lg underline underline-offset-[6px]"
+                className="self-center lg:self-end flex items-center gap-1 font-semibold text-gray-800 hover:text-gray-900 transition-colors text-lg underline underline-offset-[6px]"
               >
-                View All Services ↗
+                View All Services
+                <ArrowUpRight size={18} strokeWidth={2} />
               </a>
             </div>
             <div className="flex flex-col items-center shrink-0">

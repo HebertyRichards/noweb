@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { FormEvent, ChangeEvent } from "react";
-import { ChevronDown, Search } from "lucide-react";
+import { ChevronDown, Search, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -192,7 +192,7 @@ export function HeaderDesktop() {
             variant="default"
             className="bg-lime-300 text-black rounded-none font-semibold text-sm lg:text-base hover:bg-lime-400 px-5 py-5 lg:px-7 lg:py-7"
           >
-            Get A Quote ↗
+            Get A Quote <ArrowUpRight size={18} strokeWidth={2} />
           </Button>
         </div>
       </div>

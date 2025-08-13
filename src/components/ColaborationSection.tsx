@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 export function CollaborationSection() {
   return (
     <section className="bg-black text-gray-200 py-28">
@@ -32,7 +34,7 @@ export function CollaborationSection() {
               href="#"
               className="inline-flex items-center gap-2 font-semibold mt-6 text-white hover:text-brand-green underline underline-offset-4"
             >
-              More About Us ↗
+              More About Us <ArrowUpRight size={18} strokeWidth={2} />
             </a>
           </div>
           <div className="pl-8">
@@ -45,7 +47,7 @@ export function CollaborationSection() {
               href="#"
               className="inline-flex items-center gap-2 font-semibold mt-6 text-white hover:text-brand-green underline underline-offset-4"
             >
-              Get In Touch ↗
+              Get In Touch <ArrowUpRight size={18} strokeWidth={2} />
             </a>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { ArrowUpRight } from "lucide-react";
 
 const FooterLink = ({
   href,
@@ -32,7 +33,9 @@ export function Footer() {
               href="#"
               className="h-40 w-40 bg-lime-300 rounded-full flex-shrink-0 flex items-center justify-center text-center text-black font-bold text-lg hover:bg-lime-400 transition-colors group"
             >
-              <span className="flex items-center gap-2">Let's Talk</span>
+              <span className="flex items-center gap-2">
+                Let's Talk <ArrowUpRight size={18} strokeWidth={2} />
+              </span>
             </a>
           </div>
         </div>

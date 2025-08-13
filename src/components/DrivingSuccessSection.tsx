@@ -1,4 +1,5 @@
 import React from "react";
+import { ArrowUpRight } from "lucide-react";
 
 const StrategyPill: React.FC<StrategyPillProps> = ({
   imgSrc,
@@ -100,7 +101,9 @@ export function DrivingSuccessSection() {
                   href="#"
                   className="mt-6 h-30 w-30 rounded-full border border-black flex items-center justify-center text-sm font-semibold text-center hover:border-gray-900 transition-colors"
                 >
-                  <span className="flex items-center gap-1">Contact Us ↗</span>
+                  <span className="flex items-center gap-1">
+                    Contact Us <ArrowUpRight size={18} strokeWidth={2} />
+                  </span>
                 </a>
               </div>
               <div>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { FormEvent, ChangeEvent } from "react";
-import { Menu, X, ArrowRight, Search, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowUpRight, Search, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { navLinks } from "@/utils/exemples";
 import {
@@ -185,7 +185,7 @@ export function HeaderMobile() {
           <nav className="flex flex-col gap-2">
             {navLinks.map((link) => renderNavElement(link))}
             <Button className="w-full mt-4 bg-lime-300 text-black rounded-none hover:bg-lime-400 py-3 font-semibold">
-              Get A Quote <ArrowRight className="ml-2 h-5 w-5 text-black" />
+              Get A Quote <ArrowUpRight size={18} strokeWidth={2} />
             </Button>
           </nav>
         </div>
